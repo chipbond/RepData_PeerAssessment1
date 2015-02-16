@@ -13,6 +13,18 @@ Load Raw Data
 
 ```r
 data <- read.csv("activity.csv")
+```
+
+```
+## Warning in file(file, "rt"): cannot open file 'activity.csv': No such file
+## or directory
+```
+
+```
+## Error in file(file, "rt"): cannot open the connection
+```
+
+```r
 data$date = as.Date(data$date)
 dates <- unique(data$date)
 ```
@@ -260,7 +272,11 @@ for (x in 1:288) {
 }
 
 avgsteps_wknd <- plot(stepsperinterval_wknd, type = "l", main = "Weekend")
+```
 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-2.png) 
+
+```r
 stepsperinterval_week$day <- "Weekday"
 stepsperinterval_wknd$day <- "Weekend"
 avgsteps <- rbind(stepsperinterval_week, stepsperinterval_wknd)
@@ -268,11 +284,6 @@ avgsteps[, 1] = as.numeric(avgsteps[, 1])
 avgsteps[, 2] = as.numeric(avgsteps[, 2])
 
 library(lattice)
-```
-
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-2.png) 
-
-```r
 xyplot(average ~ interval | day, data = avgsteps, type = "l", layout = c(1, 2), xlab = "Interval", ylab = "Number of steps")
 ```
 
